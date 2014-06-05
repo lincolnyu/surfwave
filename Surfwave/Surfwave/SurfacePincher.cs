@@ -251,6 +251,13 @@ namespace Surfwave
             _baseTransform.Reset();
         }
 
+        public void Reset()
+        {
+            ResetTransform();
+            _pressedPointers.Clear();
+            Frozen = false;
+        }
+
         private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
             if (!Activated || InputFilter != null && !InputFilter(SurfaceElement, sender, e))
@@ -309,11 +316,6 @@ namespace Surfwave
 
         private void OnPointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (!Activated)
-            {
-                return;
-            }
-
             OnPointerReleased(sender, e);
         }
 
